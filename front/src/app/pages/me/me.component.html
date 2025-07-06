@@ -1,0 +1,16 @@
+<div fxLayout="column" fxLayoutAlign="center center" style="margin-top:30px;">
+  <h1>Profil Utilisateur</h1>
+  <span fxLayout="column" fxLayoutAlign="center center">
+    <form *ngIf="formMe" [formGroup]="formMe" (ngSubmit)="submit()" fxLayout="column" fxLayoutAlign="center center"
+      fxLayoutGap="10px">
+      <span fxLayout="row" fxLayoutGap="20px">
+        <input color="primary" class="input-field" formControlName="userName">
+        <input class="input-field" formControlName="email">
+        <input placeholder="password" type="password" class="input-field" formControlName="password">
+      </span>
+
+      <button mat-raised-button color="primary" style="width: 120px;" type="submit">Sauvegarder</button>
+
+    </form>
+  </span>
+</div>

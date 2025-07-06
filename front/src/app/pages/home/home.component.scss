@@ -1,0 +1,21 @@
+.center {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.button-bordered {
+  border: 2px solid black;
+  padding: 5px 15px;
+  font-size: 14px;
+  border-radius: 5px;
+  min-width: 80px;
+  width: 150px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

@@ -1,6 +1,7 @@
 package com.openclassrooms.poc.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.openclassrooms.poc.models.Contact;
 import com.openclassrooms.poc.models.Message;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
@@ -26,11 +27,7 @@ public class UserDto {
 
     @NonNull
     @Size(max = 20)
-    private String lastName;
-
-    @NonNull
-    @Size(max = 20)
-    private String firstName;
+    private String userName;
 
     @NonNull
     private boolean admin;
@@ -39,7 +36,7 @@ public class UserDto {
     @Size(max = 120)
     private String password;
 
-    private List<Message> messages = new ArrayList<>();
+    private List<Contact> contacts = new ArrayList<>();
 
     private LocalDateTime createdAt;
 

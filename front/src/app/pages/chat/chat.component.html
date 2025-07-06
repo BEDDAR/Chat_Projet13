@@ -1,0 +1,17 @@
+<div style="max-width: 600px; margin: auto;">
+  <h2>💬 Chat en temps réel</h2>
+
+  <div *ngFor="let msg of messages" class="message-box">
+    {{ msg }}
+  </div>
+
+  <div style="margin-top: 20px;">
+    <input
+      value="message"
+      placeholder="Tape ton message..."
+      (keyup.enter)="sendMessage()"
+      style="width: 80%; padding: 10px;"
+    />
+    <button (click)="sendMessage()" style="padding: 10px;">Envoyer</button>
+  </div>
+</div>

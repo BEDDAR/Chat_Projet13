@@ -1,13 +1,12 @@
 package com.openclassrooms.poc.models;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.Accessors;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "messages")
@@ -17,27 +16,23 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(of = {"id"})
 @Builder
 @NoArgsConstructor
-@RequiredArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Message {
+public class Contact {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "contact_id")
-    private Contact contact;
+    @JoinColumn(name = "owner_id")
+    private User owner;
 
-    @NonNull
-    @Size(max = 1000)
-    private String content;
+    // L'utilisateur ajouté en tant que contact
+    @ManyToOne
+    @JoinColumn(name = "contact_user_id")
+    private User contactUser;
 
-    @CreatedDate
-    @Column(name = "sent_at", updatable = false)
-    private LocalDateTime timestamp;
-
-    private boolean sentByOwner; // true = sent by 'owner', false = sent by 'contactUser'
+    @OneToMany(mappedBy = "contact", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Message> messages = new ArrayList<>();
 }
-
