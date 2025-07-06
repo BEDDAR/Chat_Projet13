@@ -1,6 +1,8 @@
 package com.openclassrooms.poc.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.Accessors;
@@ -26,16 +28,22 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "contact_id")
+    @JsonIgnore
+    private Contact contact;
+
     @NonNull
     @Size(max = 1000)
-    @Column(nullable = false)
-    private String contenu;
+    private String content;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @NotNull
+    private Long senderId;
 
     @CreatedDate
     @Column(name = "sent_at", updatable = false)
-    private LocalDateTime sentAt;
+    private LocalDateTime timestamp;
+
+
 }
+

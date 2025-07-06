@@ -1,0 +1,49 @@
+<div fxLayout="column" fxLayoutAlign="center center" style="margin-top:30px;">
+  <h1>Profil Utilisateur</h1>
+  <span fxLayout="column" fxLayoutAlign="center center">
+    <form *ngIf="formMe" [formGroup]="formMe" (ngSubmit)="submit()" fxLayout="column" fxLayoutAlign="center center"
+      fxLayoutGap="10px">
+      <span fxLayout="row" fxLayoutGap="20px">
+        <input color="primary" class="input-field" formControlName="userName">
+        <input class="input-field" formControlName="email">
+        <input placeholder="password" type="password" class="input-field" formControlName="password">
+      </span>
+
+      <button mat-raised-button color="primary" style="width: 120px;" type="submit">Sauvegarder</button>
+
+    </form>
+  </span>
+</div>
+<hr>
+
+<div *ngIf="!currentUser?.admin">
+  <div class="chat-toggle-icon" (click)="toggleChat()">
+  <mat-icon >chat_bubble_outline</mat-icon>
+</div>
+
+  <div class="chat-box" *ngIf="showChat">
+    <div class="messages">
+      <div *ngFor="let message of messages">
+        <div class="message1" *ngIf="message.senderId===currentUser?.id">
+          <b>me:</b> {{ message.content }}
+        </div>
+        <div class="message2" *ngIf="message.senderId!=currentUser?.id">
+          <b>{{contact?.owner?.userName}}:</b> {{ message.content }}
+        </div>
+      </div>
+    </div>
+    <div class="message-input">
+      <span class="custom-textarea" appearance="outline">
+        <textarea [(ngModel)]="newMessage" (keydown.enter)="sendMessage()" class="form-control" rows="3"
+          placeholder="Écrire un message..."></textarea>
+      </span>
+      <div class="icon-aligne">
+        <button (click)="sendMessage()" class="button">
+          <mat-icon class="icon-custom" color="primary">send</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div>
+  </div>
+</div>

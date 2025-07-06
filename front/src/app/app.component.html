@@ -1,0 +1,46 @@
+<!-- Menu pour les grands écrans -->
+<span fxHide.lt-md *ngIf="!(isHomePage || isLoginPage || isRegisterPage)">
+  <div fxLayout="row" fxLayoutAlign="space-between center" style=" height: 100px;">
+    <img src="/assets/logo.png" alt="logo" routerLink="/" style="padding: 20px; max-width: 120px; max-height: 100px;" />
+    <div *ngIf="isLogged$ | async" fxLayout="row" fxLayoutAlign="center center" >
+      <div fxLayout="row">
+        <a class="lien" (click)="logout()" mat-button color="warn">Se déconnecter</a>
+        <a *ngIf="currentUser?.admin"  mat-button class="lien" color="primary" routerLink="chat">Ma messagerie</a>
+      </div>
+      <a class="lien" routerLink="me"> <mat-icon color="primary" style="font-size: 35px; padding: 20px;">account_circle</mat-icon></a>
+    </div>
+  </div>
+  <hr />
+</span>
+
+<!-- Menu pour les petits écrans -->
+<span fxHide.gt-sm *ngIf="!(isHomePage || isLoginPage || isRegisterPage)">
+  <div *ngIf="isLogged$ | async" fxLayout="row" fxLayoutAlign="space-between center">
+    <img src="/assets/logo.png" alt="logo" routerLink="/" style="max-width: 120px; max-height: 100px;" />
+    <mat-sidenav-container autosize [hasBackdrop]="true">
+      <mat-sidenav #sidenav class="example-sidenav" mode="side" position="end" (click)="sidenav.close()">
+        <span class="items">
+          <span fxLayout="column" fxLayoutAlign="space-between center">
+            <a class="lien" style="color: red;" (click)="sidenav.close()" (click)="logout()">Se déconnecter</a>
+            <a class="lien" routerLink="articles" (click)="sidenav.close()">Articles</a>
+            <a class="lien" routerLink="themes" (click)="sidenav.close()">Thèmes</a>
+          </span>
+          <span>
+            <mat-icon routerLink="me" class="custom-icon" (click)="sidenav.close()">account_circle</mat-icon>
+          </span>
+        </span>
+      </mat-sidenav>
+
+      <div class="example-sidenav-content">
+        <button type="button" mat-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+    </mat-sidenav-container>
+  </div>
+  <hr>
+</span>
+
+<div>
+  <router-outlet></router-outlet>
+</div>

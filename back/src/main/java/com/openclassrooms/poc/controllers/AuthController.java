@@ -1,5 +1,6 @@
 package com.openclassrooms.poc.controllers;
 
+import com.openclassrooms.poc.models.Contact;
 import com.openclassrooms.poc.models.User;
 import com.openclassrooms.poc.payload.request.LoginRequest;
 import com.openclassrooms.poc.payload.request.SignupRequest;
@@ -8,6 +9,7 @@ import com.openclassrooms.poc.payload.response.MessageResponse;
 import com.openclassrooms.poc.repository.UserRepository;
 import com.openclassrooms.poc.security.jwt.JwtUtils;
 import com.openclassrooms.poc.security.services.UserDetailsImpl;
+import com.openclassrooms.poc.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -30,15 +32,18 @@ public class AuthController {
     private final JwtUtils jwtUtils;
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
+    private final UserService userService;
 
     AuthController(AuthenticationManager authenticationManager,
                    PasswordEncoder passwordEncoder,
                    JwtUtils jwtUtils,
-                   UserRepository userRepository) {
+                   UserRepository userRepository,
+                   UserService userService) {
         this.authenticationManager = authenticationManager;
         this.jwtUtils = jwtUtils;
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
+        this.userService = userService;
     }
 
     @PostMapping("/login")
@@ -75,11 +80,15 @@ public class AuthController {
 
         // Create new user's account
         User user = new User(signUpRequest.getEmail(),
-                signUpRequest.getLastName(),
-                signUpRequest.getFirstName(),
+                signUpRequest.getUserName(),
                 passwordEncoder.encode(signUpRequest.getPassword()),
                 false);
 
+        Contact serviceClientContact = new Contact();
+        User contactUser = userService.findById(1L);
+        serviceClientContact.setContactUser(user);
+        serviceClientContact.setOwner(contactUser);
+        user.getContacts().add(serviceClientContact);
         userRepository.save(user);
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));

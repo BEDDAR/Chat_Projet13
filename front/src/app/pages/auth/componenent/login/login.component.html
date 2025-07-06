@@ -1,0 +1,35 @@
+<span fxHide.lt-md>
+  <div style="padding: 20px;height: 100px;">
+    <img src="/assets/logo.png" alt="logo" routerLink="/" style="padding: 20px; max-width: 120px; max-height: 100px;" />
+  </div>
+  <hr />
+</span>
+<div>
+  <mat-icon onclick="history.back()" class="custom-icon">keyboard_backspace</mat-icon>
+  <div fxHide.gt-sm class="logo-center">
+    <img src="/assets/logo.png" alt="logo" routerLink="/" style="max-width: 200px; max-height: 200px;" />
+  </div>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <span fxLayout="column" fxLayoutAlign="center center">
+        <h1>Se connecter</h1>
+
+      <form [formGroup]="form" (ngSubmit)="submit()" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <span fxLayout="column" fxLayoutGap="20px">
+          <span fxLayout="column" fxLayoutGap="1px">
+            <label>E-mail ou nom d'utilisateur</label>
+            <input class="input-field-login" formControlName="email">
+          </span>
+
+          <span fxLayout="column" fxLayoutGap="1px">
+            <label>Mot de passe</label>
+            <input type="password" class="input-field-login" formControlName="password">
+          </span>
+
+        </span>
+
+          <button mat-raised-button color="primary" style="width: 120px;" type="submit" >Se connecter</button>
+
+      </form>
+    </span>
+  </div>
+</div>

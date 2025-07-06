@@ -1,0 +1,38 @@
+<span fxHide.lt-md>
+  <div style="padding: 20px;height: 100px;">
+    <img src="/assets/logo.png" alt="logo" routerLink="/" style="padding: 20px; max-width: 120px; max-height: 100px;" />
+  </div>
+  <hr />
+</span>
+
+<div>
+  <mat-icon onclick="history.back()" class="custom-icon">keyboard_backspace</mat-icon>
+  <div fxHide.gt-sm class="logo-center">
+    <img src="/assets/logo.png" alt="logo" routerLink="/" style="max-width: 200px; max-height: 200px;" />
+  </div>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <h1>Inscription</h1>
+    <form *ngIf="form" [formGroup]="form" (ngSubmit)="submit()" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+      <span fxLayout="column" fxLayoutGap="10px">
+        <span fxLayout="column" fxLayoutGap="1px">
+          <label>Nom d'utilisateur</label>
+          <input class="input-field" formControlName="userName">
+        </span>
+
+        <span fxLayout="column" fxLayoutGap="1px">
+          <label>Adresse e-mail</label>
+          <input class="input-field" formControlName="email">
+        </span>
+
+        <span fxLayout="column" fxLayoutGap="1px">
+          <label>Mot de passe</label>
+          <input type="password" class="input-field" formControlName="password">
+        </span>
+
+      </span>
+
+      <button mat-raised-button color="primary" type="submit" style="width: 100px;">S'inscrire</button>
+
+    </form>
+  </div>
+</div>

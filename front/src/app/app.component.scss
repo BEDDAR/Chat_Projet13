@@ -1,0 +1,48 @@
+/* Custom icon */
+.custom-icon.mat-icon {
+  height: 45px;
+  width: 45px;
+  font-size: xxx-large;
+  color: gray;
+}
+
+/* Style des liens */
+.lien {
+  text-decoration: none;
+}
+
+/* Configuration du container du mat-drawer */
+.example-container {
+  width: 400px;
+  height: 100vh;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+/* Configuration du contenu à l'intérieur du mat-drawer */
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-sidenav {
+  width: 50%;
+  height: 100vh;
+  padding: 20px;
+  background: white;
+  z-index: 1000 !important; /* Priorité maximale pour passer au premier plan */
+  position: fixed; /* Pour éviter qu'il soit caché par d'autres éléments */
+  top: 0;
+  right: 0;
+  box-shadow: -5px 0 10px rgba(0, 0, 0, 0.2); /* Effet d'ombre pour bien distinguer le menu */
+}
+
+.items{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 94vh;
+  justify-content: space-between;
+}
+

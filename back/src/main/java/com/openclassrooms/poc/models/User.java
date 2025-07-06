@@ -1,6 +1,8 @@
 package com.openclassrooms.poc.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
@@ -39,13 +41,8 @@ public class User {
 
     @NonNull
     @Size(max = 20)
-    @Column(name = "last_name")
-    private String lastName;
-
-    @NonNull
-    @Size(max = 20)
-    @Column(name = "first_name")
-    private String firstName;
+    @Column(name = "user_name")
+    private String userName;
 
     @NonNull
     @Size(max = 120)
@@ -54,8 +51,9 @@ public class User {
     @NonNull
     private boolean admin;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Message> messages = new ArrayList<>();
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties("owner")
+    private List<Contact> contacts = new ArrayList<>();
 
     @CreatedDate
     @Column(name = "created_at", updatable = false)

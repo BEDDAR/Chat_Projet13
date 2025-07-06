@@ -1,0 +1,24 @@
+.input-field {
+  width: 100%;
+  height: 50px;
+  font-size: 15px;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.header-spacing {
+  margin-bottom: 35px; /* Ajustez la valeur en fonction de vos besoins */
+}
+
+.custom-icon.mat-icon {
+  height: 45px;
+  width: 45px;
+  font-size: xxx-large;
+  margin-left: 3%;
+}
+
+.logo-center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
